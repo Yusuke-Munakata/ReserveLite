@@ -1,0 +1,15 @@
+services:
+  postgres:
+    image: postgres:16
+    container_name: reserve-lite-postgres
+    environment:
+      POSTGRES_DB: salon_app
+      POSTGRES_USER: salon_user
+      POSTGRES_PASSWORD: salon_password
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
