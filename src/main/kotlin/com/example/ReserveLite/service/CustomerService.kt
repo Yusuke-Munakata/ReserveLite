@@ -4,6 +4,7 @@ import com.example.ReserveLite.entity.Customer
 import com.example.ReserveLite.form.CustomerCreateForm
 import com.example.ReserveLite.repository.CustomerRepository
 import org.springframework.stereotype.Service
+import org.springframework.transaction.annotation.Transactional
 
 /**
  * 顧客情報を扱うサービス
@@ -20,6 +21,7 @@ class CustomerService(
    * @param form 登録する顧客情報を保持したフォーム
    * @return 保存済みの顧客エンティティ
    */
+  @Transactional
   fun createCustomer(form: CustomerCreateForm): Customer {
     val customer = Customer(
         name = form.name,
