@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ModelAttribute
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestMapping
 import jakarta.validation.Valid
+import org.springframework.web.bind.annotation.PathVariable
 
 @Controller
 @RequestMapping("/customers")
@@ -31,5 +32,12 @@ class CustomerPageController(
 
         customerService.createCustomer(customerCreateForm)
         return "redirect:/customers/new"
+    }
+
+    @GetMapping("/{id}")
+    fun getCustomer(@PathVariable id: Long, model: Model): String {
+        val customer = customerService.getCustomerById(id)
+        model.addAttribute("customer", customer)
+        return "customers/detail"
     }
 }

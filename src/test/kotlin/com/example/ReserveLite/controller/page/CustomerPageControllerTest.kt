@@ -55,4 +55,17 @@ class CustomerPageControllerTest {
       model { hasErrors() }
     }
   }
+
+  @Test
+  fun `GET customers id 顧客詳細が表示されること`() {
+    val customer = Customer(name = "田中太郎", email = "taro.tanaka@example.com")
+    whenever(customerService.getCustomerById(1L)).thenReturn(customer)
+
+    mockMvc.get("/customers/1")
+      .andExpect {
+        status { isOk() }
+        view { name("customers/detail") }
+        model { attribute("customer", customer) }
+      }
+  }
 }
