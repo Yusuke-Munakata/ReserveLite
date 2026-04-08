@@ -28,6 +28,7 @@ class CustomerService(
         name = form.name,
         email = form.email
     )
+
     return customerRepository.save(customer)
   }
 

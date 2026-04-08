@@ -33,14 +33,14 @@ class CustomerPageControllerTest {
 
   @Test
   fun `POST customers 正常系なら顧客を登録してリダイレクトする`() {
-    whenever(customerService.createCustomer(any())).thenReturn(Customer(name = "田中太郎", email = "taro@example.com"))
+    whenever(customerService.createCustomer(any())).thenReturn(Customer(id = 1L, name = "田中太郎", email = "taro@example.com"))
 
     mockMvc.post("/customers") {
       param("name", "田中太郎")
       param("email", "taro@example.com")
     }.andExpect {
       status { is3xxRedirection() }
-      redirectedUrl("/customers/new")
+      redirectedUrl("/customers/1")
     }
   }
 

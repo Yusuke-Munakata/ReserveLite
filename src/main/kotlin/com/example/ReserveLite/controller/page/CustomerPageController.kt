@@ -30,8 +30,9 @@ class CustomerPageController(
     ): String {
         if (bindingResult.hasErrors()) return "customers/create"
 
-        customerService.createCustomer(customerCreateForm)
-        return "redirect:/customers/new"
+        val customer = customerService.createCustomer(customerCreateForm)
+        
+        return "redirect:/customers/${customer.id}"
     }
 
     @GetMapping("/{id}")
